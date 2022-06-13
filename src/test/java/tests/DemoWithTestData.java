@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 
-
 public class DemoWithTestData {
     RegistrationPage registrationPage = new RegistrationPage();
     Faker faker = new Faker();
@@ -19,10 +18,10 @@ public class DemoWithTestData {
             mobile = faker.phoneNumber().subscriberNumber(10),
             gender = faker.demographic().sex(),
             month = registrationPage.getRandomMonth(),
-            hobby = registrationPage.getRandomHobby(),
-            pictureName = "img.jpg",
-            state = registrationPage.getRandomState(),
-            cityValue = registrationPage.setCity(state);
+            hobbies = "Sports",
+            pictureName = "img.png",
+            state = "Haryana",
+            city = "Karnal";
     Integer day = faker.number().numberBetween(1, 30),
             year = faker.number().numberBetween(1900, 2022);
 
@@ -45,10 +44,11 @@ public class DemoWithTestData {
                 .setMobile(mobile)
                 .setBirthDate(day, month, year.toString())
                 .subjectForm()
-                .hobbiesForm(hobby)
+                .setHobby(hobbies)
                 .uploadPhoto(pictureName)
                 .currentAddres(currentAddress)
-                .stateCity(state)
+                .setState(state)
+                .setCity(city)
                 .submit()
                 .checkResult("Student Name", firstName)
                 .checkResult("Student Name", lastName)
@@ -56,9 +56,9 @@ public class DemoWithTestData {
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile)
                 .checkResult("Date of Birth", (day + " " + month + "," + year))
-                .checkResult("Subjects", hobby)
+                .checkResult("Hobbies", hobbies)
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
-                .checkResult("State and City", (state + " " + cityValue));
+                .checkResult("State and City", state + " " + city);
     }
 }
