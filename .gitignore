@@ -141,18 +141,6 @@ replay_pid*
 **/build/
 !src/**/build/
 
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Avoid ignore Gradle wrappper properties
-!gradle-wrapper.properties
-
-# Cache of project
-.gradletasknamecache
-
 # Eclipse Gradle plugin generated files
 # Eclipse Core
 .project
@@ -160,7 +148,6 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,gradle
-/build.gradle
 /gradlew
 /gradlew.bat
 /settings.gradle
