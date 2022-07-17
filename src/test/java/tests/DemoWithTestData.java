@@ -2,10 +2,10 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
+import helpers.Attach;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPage;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 
 
 public class DemoWithTestData {
@@ -29,11 +29,25 @@ public class DemoWithTestData {
     static void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        //Это для добавления видео
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
     }
 
+    @AfterEach
+    void addAttach() {
+        Attach.screenshotAs("Last ScreenShot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+    }
 
     @Tag("demoqa")
+    @DisplayName("Заполнение формы")
     @Test
     void formTest() {
         registrationPage.openPage()
