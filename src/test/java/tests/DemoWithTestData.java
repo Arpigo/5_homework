@@ -59,6 +59,7 @@ public class DemoWithTestData {
                 .setBirthDate(day, month, year.toString())
                 .subjectForm()
                 .setHobby(hobbies)
+                .uploadPhoto(pictureName)
                 .currentAddres(currentAddress)
                 .setState(state)
                 .setCity(city)
@@ -70,6 +71,7 @@ public class DemoWithTestData {
                 .checkResult("Mobile", mobile)
                 .checkResult("Date of Birth", (day + " " + month + "," + year))
                 .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
     }
