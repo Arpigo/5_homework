@@ -6,19 +6,29 @@ repositories {
     mavenCentral()
 }
 
+def junitVersion ="5.8.2",
+    slf4jVersion = "1.7.32"
+
 dependencies {
-    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
     testImplementation(
             "org.junit.jupiter:junit-jupiter:5.8.2",
-            "com.codeborne:selenide:6.4.0",
+            'com.codeborne:selenide:6.6.3',
             "org.slf4j:slf4j-simple:1.7.36",
             "com.github.javafaker:javafaker:1.0.2"
     )
 }
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+
 }
 
 test{
     useJUnitPlatform()
+    testLogging{
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
